@@ -11,8 +11,8 @@
 2) Запустите веб-сервер: php -S localhost:8080.
 3) Откройте браузер и перейдите по адресу http://localhost:8080 для доступа к первому заданию.
 4) Перейдите по адресу http://localhost:8080/task2.php для доступа ко второму заданию.
-5) Перейдите по адресу http://localhost:8080/operator.php для доступа к третьему и четвёртому заданию.
-6) Перейдите по адресу http://localhost:8080/homework.php для доступа к домашнему заданию.
+5) Перейдите по адресу http://localhost:8080/task3.php для доступа к третьему и четвёртому заданию.
+6) Перейдите по адресу http://localhost:8080/task4.php для доступа к домашнему заданию.
 
 ## Задания
 1. Работа с глобальной переменной $_POST
@@ -164,9 +164,68 @@ function validateFormData($name, $email, $review, $comment)
 
 __2. Получение данных с различных контроллеров__
 
+1. Создайте форму, состоящую минимум из 3 контроллеров (input, select)
+```HTML
+<fieldset>
+        <legend>Форма</legend>
+
+        <form action="task2.php" method="post">
+            <label for="fname">Имя:
+                <input type="text" id="fname" name="fname">
+            </label><br><br>а
+            <label for="age">Возраст:
+                <input type="number" id="age" name="age">
+            </label><br><br>
+            <label for="country">Страна:
+                <select id="country" name="country">
+                    <option value="Молдова">Молдова</option>
+                    <option value="Германия">Германия</option>
+                    <option value="Франция">Франция</option>
+                </select>
+            </label><br><br>
+            <input type="submit" value="Отправить">
+        </form>
+    </fieldset>
+```
+3. Обработайте данные и выведите их на экран
+
+```php
+ <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $name = $_POST['fname'];
+        $age = $_POST['age'];
+        $country = $_POST['country'];
+        echo "Имя: $name, Возраст: $age, Страна: $country";
+    }
+    ?>
+```
+
+![image](https://github.com/S1ngle777/Lab_4_PHP/assets/128795707/deb322fa-030a-4dd2-ae55-ed22c8f431b1)
+
+
 __3. Создание, обработка и валидация форм__
+
+![image](https://github.com/S1ngle777/Lab_4_PHP/assets/128795707/3d19d0d2-44dd-405c-b534-acef570d5f5d)
+
+Я ввёл неверно данные:
+
+![image](https://github.com/S1ngle777/Lab_4_PHP/assets/128795707/6ea585d8-b8b1-42b6-bc31-bcb3f6e17e9a)
+
+Я ввёл данные верно:
+
+![image](https://github.com/S1ngle777/Lab_4_PHP/assets/128795707/61f33386-3628-4bd2-9c0c-7766b4bfea7b)
+
+`$_REQUEST` и `$_POST` - это глобальные массивы в PHP, которые содержат данные, переданные в скрипт.
+
+`$_POST` содержит данные, переданные через HTTP POST. Это обычно данные формы, отправленные методом "POST".
+
+`$_REQUEST`, с другой стороны, содержит данные, переданные через HTTP GET, POST и COOKIE. По умолчанию, `$_REQUEST` содержит содержимое `$_GET`, `$_POST` и `$_COOKIE`.
+
+Основное различие между ними заключается в том, что `$_POST` содержит только данные, отправленные методом POST, в то время как `$_REQUEST` может содержать данные из различных источников, в зависимости от конфигурации PHP.
+
 
 __4. Создание формы__
 
 ## Список использованных источников
 
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset
